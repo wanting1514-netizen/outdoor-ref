@@ -12,7 +12,13 @@ import path from 'path';
         plugins: [react()],
         build: {
           target: 'es2015',
-          cssTarget: 'chrome61'
+          cssTarget: 'chrome61',
+          minify: 'esbuild',
+          rollupOptions: {
+            output: {
+              manualChunks: undefined,
+            }
+          }
         },
         define: {
           'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -21,6 +27,11 @@ import path from 'path';
         resolve: {
           alias: {
             '@': path.resolve(__dirname, '.'),
+          }
+        },
+        optimizeDeps: {
+          esbuildOptions: {
+            target: 'es2015'
           }
         }
       };
