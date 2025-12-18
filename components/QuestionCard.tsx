@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Question, QuestionType } from '../types';
 import { Check, X, HelpCircle, Eye, SkipForward, ArrowLeft } from 'lucide-react';
@@ -15,9 +16,6 @@ interface QuestionCardProps {
 const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevious, isLast, currIndex, total, initialAnswer }) => {
   const [selectedOption, setSelectedOption] = useState<any>(null);
   const [showFeedback, setShowFeedback] = useState(false);
-  // isRevealed is now effectively synonymous with showFeedback for objective questions,
-  // but we keep it to maintain logic structure for Short Answer if needed, or compatibility.
-  // We will force it to true immediately on submit.
   const [isRevealed, setIsRevealed] = useState(false); 
   const [inputVal, setInputVal] = useState('');
   const [shortAnswerSelfRated, setShortAnswerSelfRated] = useState<boolean | null>(null);
@@ -90,8 +88,6 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevi
 
     setShowFeedback(true);
     // Modified: Always reveal immediately. 
-    // For Short Answer, this shows the reference answer block.
-    // For others, this shows the green/red highlighting.
     setIsRevealed(true);
   };
 
@@ -131,10 +127,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevi
       {question.options?.map((opt) => {
         let btnClass = "w-full text-left p-4 rounded-xl border-2 transition-all duration-200 flex justify-between items-center ";
         if (showFeedback) {
-          // Reveal green only if isRevealed is true (which is now always true after submit)
-          if (isRevealed && opt === question.correctAnswer) btnClass += "border-green-500 bg-green-50 text-green-900 ";
-          else if (selectedOption === opt) btnClass += "border-red-500 bg-red-50 text-red-900 ";
-          else btnClass += "border-gray-200 opacity-60 ";
+          if (isRevealed && opt === question.correctAnswer) {
+              btnClass += "border-green-500 bg-green-50 text-green-900 shadow-sm";
+          } else if (selectedOption === opt) {
+              btnClass += "border-red-500 bg-red-50 text-red-900 shadow-sm";
+          } else {
+              btnClass += "border-gray-200 opacity-50 grayscale";
+          }
         } else {
           btnClass += selectedOption === opt ? "border-blue-500 bg-blue-50 text-blue-900 shadow-md" : "border-gray-200 hover:border-blue-300 hover:bg-gray-50";
         }
@@ -167,9 +166,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevi
             let btnClass = "w-full text-left p-4 rounded-xl border-2 transition-all duration-200 flex justify-between items-center ";
             
             if (showFeedback) {
-                if (isRevealed && isCorrect) btnClass += "border-green-500 bg-green-50 text-green-900 "; 
-                else if (isSelected) btnClass += "border-red-500 bg-red-50 text-red-900 "; 
-                else btnClass += "border-gray-200 opacity-60 ";
+                if (isRevealed && isCorrect) {
+                    btnClass += "border-green-500 bg-green-50 text-green-900 shadow-sm"; 
+                } else if (isSelected) {
+                    btnClass += "border-red-500 bg-red-50 text-red-900 shadow-sm"; 
+                } else {
+                    btnClass += "border-gray-200 opacity-50 grayscale";
+                }
             } else {
                 btnClass += isSelected ? "border-blue-500 bg-blue-50 text-blue-900 shadow-md" : "border-gray-200 hover:border-blue-300 hover:bg-gray-50";
             }
@@ -186,7 +189,10 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevi
                 className={btnClass}
             >
                 <span className="font-medium text-lg">{opt}</span>
-                {showFeedback && isRevealed && isCorrect && <Check className="w-6 h-6 text-green-600" />}
+                <div className="flex items-center">
+                    {showFeedback && isRevealed && isCorrect && <Check className="w-6 h-6 text-green-600" />}
+                    {showFeedback && isSelected && !isCorrect && <X className="w-6 h-6 text-red-600" />}
+                </div>
             </button>
             );
         })}
@@ -198,12 +204,16 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevi
       <div className="flex space-x-4">
           {[true, false].map(val => {
               const label = val ? "正确" : "错误";
-              let btnClass = "flex-1 p-6 rounded-xl border-2 text-center text-xl font-bold transition-all ";
+              let btnClass = "flex-1 p-6 rounded-xl border-2 text-center text-xl font-bold transition-all flex items-center justify-center space-x-2 ";
               
               if (showFeedback) {
-                  if (isRevealed && val === question.correctAnswer) btnClass += "border-green-500 bg-green-50 text-green-800 ";
-                  else if (selectedOption === val) btnClass += "border-red-500 bg-red-50 text-red-800 ";
-                  else btnClass += "border-gray-200 opacity-60 ";
+                  if (isRevealed && val === question.correctAnswer) {
+                      btnClass += "border-green-500 bg-green-50 text-green-800 shadow-sm";
+                  } else if (selectedOption === val) {
+                      btnClass += "border-red-500 bg-red-50 text-red-800 shadow-sm";
+                  } else {
+                      btnClass += "border-gray-200 opacity-50 grayscale";
+                  }
               } else {
                   btnClass += selectedOption === val 
                     ? (val ? "border-green-500 bg-green-50 text-green-800" : "border-red-500 bg-red-50 text-red-800") 
@@ -217,7 +227,9 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAnswer, onPrevi
                     disabled={showFeedback}
                     className={btnClass}
                   >
-                      {label}
+                      <span>{label}</span>
+                      {showFeedback && isRevealed && val === question.correctAnswer && <Check className="w-6 h-6" />}
+                      {showFeedback && selectedOption === val && val !== question.correctAnswer && <X className="w-6 h-6" />}
                   </button>
               )
           })}
