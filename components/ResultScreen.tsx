@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { RotateCcw, CheckCircle, XCircle, SkipForward } from 'lucide-react';
 import { Question, QuestionType } from '../types';
@@ -79,7 +80,7 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ score, totalQuestions, user
               } else {
                   displayUserAnswer = userAnswer as string;
               }
-              displayUserAnswer = JSON.stringify(displayUserAnswer).replace(/^"|"$/g, ''); // Simple cleanup if needed, but manual handling above is better
+              displayUserAnswer = JSON.stringify(displayUserAnswer).replace(/^"|"$/g, ''); // Simple cleanup if needed
           }
 
           let displayCorrectAnswer = "";
@@ -127,8 +128,10 @@ const ResultScreen: React.FC<ResultScreenProps> = ({ score, totalQuestions, user
               </div>
 
               <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
-                 <p className="font-semibold text-gray-700 mb-1">解析 ({q.pageReference || "通用"}):</p>
-                 {q.explanation}
+                 <p className="font-semibold text-gray-700 mb-2">解析 ({q.pageReference || "通用"}):</p>
+                 <div className="whitespace-pre-line leading-relaxed text-gray-800">
+                    {q.explanation}
+                 </div>
               </div>
             </div>
           );
