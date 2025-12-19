@@ -13,29 +13,30 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filter cards based on search but only update displayed index if needed
+  // Filter cards based on search
   const filteredCards = searchTerm 
     ? cards.filter(c => c.title.toLowerCase().includes(searchTerm.toLowerCase()) || c.content.toLowerCase().includes(searchTerm.toLowerCase()))
     : cards;
 
-  // Ensure current card exists in filtered view, else reset to 0
   const activeCard = filteredCards[currentIndex] || filteredCards[0];
   const displayIndex = currentIndex + 1;
   const total = filteredCards.length;
 
-  const handleNext = () => {
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsFlipped(false);
     setTimeout(() => {
         if (currentIndex < total - 1) setCurrentIndex(currentIndex + 1);
-        else setCurrentIndex(0); // Loop back
+        else setCurrentIndex(0); 
     }, 150);
   };
 
-  const handlePrev = () => {
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsFlipped(false);
     setTimeout(() => {
         if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
-        else setCurrentIndex(total - 1); // Loop to end
+        else setCurrentIndex(total - 1);
     }, 150);
   };
 
@@ -80,10 +81,10 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input 
                 type="text" 
-                placeholder="搜索知识点..." 
+                placeholder="搜索..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-40 md:w-64 transition-all"
+                className="pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-32 md:w-64 transition-all"
             />
         </div>
       </div>
@@ -95,7 +96,7 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
             <span className="text-gray-400 text-lg font-medium mx-1">/</span>
             <span className="text-gray-500 font-medium">{total}</span>
           </div>
-          <span className="text-xs font-semibold px-2 py-1 bg-indigo-100 text-indigo-700 rounded-lg uppercase tracking-wider mb-1">
+          <span className="text-xs font-semibold px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full uppercase tracking-wider mb-1">
               {activeCard.category === 'safety_concept' ? "户外安全观" :
                activeCard.category === 'referee_basics' ? "裁判概论" :
                activeCard.category === 'rules_officiating' ? "规则执裁" :
@@ -104,50 +105,51 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
           </span>
       </div>
 
-      {/* Flashcard Area */}
-      <div className="flex-1 perspective-1000 mb-8 relative" style={{ minHeight: '400px' }}>
+      {/* Flashcard Area - Fixed Height for Layout Stability */}
+      <div className="perspective-1000 mb-8 relative w-full h-[450px] md:h-[500px]">
         <div 
-            className={`relative w-full h-full transition-all duration-500 transform-style-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''}`}
+            className={`relative w-full h-full transition-transform duration-500 transform-style-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''}`}
             onClick={toggleFlip}
         >
-            {/* Front */}
-            <div className="absolute inset-0 backface-hidden bg-white rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center justify-center p-8 text-center hover:shadow-2xl transition-shadow">
-                <div className="bg-blue-50 p-4 rounded-full mb-6">
-                    <BookOpen className="w-8 h-8 text-blue-600" />
+            {/* Front Side */}
+            <div className="absolute inset-0 backface-hidden bg-white rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center justify-center p-8 text-center">
+                <div className="bg-blue-50 p-5 rounded-2xl mb-6">
+                    <BookOpen className="w-10 h-10 text-blue-600" />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 leading-snug">
+                <h3 className="text-2xl md:text-4xl font-bold text-gray-800 leading-tight">
                     {activeCard.title}
                 </h3>
-                <p className="mt-8 text-gray-400 text-sm font-medium animate-pulse">
-                    点击卡片查看详细内容
-                </p>
+                <div className="absolute bottom-8 left-0 right-0 text-gray-400 text-sm font-medium flex items-center justify-center space-x-2">
+                    <RotateCw className="w-4 h-4" />
+                    <span>点击卡片翻转</span>
+                </div>
             </div>
 
-            {/* Back */}
+            {/* Back Side */}
             <div 
-                className="absolute inset-0 backface-hidden bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-xl flex flex-col items-center justify-center p-8 text-center rotate-y-180 overflow-y-auto"
+                className="absolute inset-0 backface-hidden bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-xl flex flex-col p-8 md:p-12 rotate-y-180"
             >
-                <div className="w-full text-left">
-                     <div className="flex items-center justify-center mb-6">
-                        <span className="text-gray-400 text-xs uppercase tracking-widest border border-gray-600 px-3 py-1 rounded-full">
-                            详细考点
+                <div className="flex-1 overflow-y-auto custom-scrollbar pr-2">
+                    <div className="flex items-center justify-center mb-6">
+                        <span className="text-blue-400 text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-blue-400/30 pb-1">
+                            考点详情
                         </span>
-                     </div>
-                     <div className="text-white text-lg md:text-xl leading-relaxed whitespace-pre-line font-light">
-                         {activeCard.content}
-                     </div>
-                     
-                     {activeCard.pageReference && (
-                        <div className="mt-8 pt-6 border-t border-gray-700 flex justify-center">
-                            <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10">
-                                <BookOpen className="w-4 h-4 text-blue-300" />
-                                <span className="text-gray-200 text-sm font-medium">
-                                    文档页码: {activeCard.pageReference}
-                                </span>
-                            </div>
-                        </div>
-                     )}
+                    </div>
+                    <div className="text-white text-lg md:text-xl leading-relaxed whitespace-pre-line font-normal">
+                        {activeCard.content}
+                    </div>
                 </div>
+                
+                {activeCard.pageReference && (
+                    <div className="mt-6 pt-6 border-t border-gray-700 flex justify-center">
+                        <div className="inline-flex items-center space-x-2 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10 transition-colors">
+                            <BookOpen className="w-4 h-4 text-blue-300" />
+                            <span className="text-gray-300 text-sm font-medium">
+                                参考页码: {activeCard.pageReference}
+                            </span>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
       </div>
@@ -155,29 +157,43 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
       {/* Controls */}
       <div className="grid grid-cols-3 gap-4">
           <button 
-            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
-            className="flex flex-col items-center justify-center py-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors group"
+            onClick={handlePrev}
+            className="flex flex-col items-center justify-center py-4 bg-white rounded-2xl shadow-sm border border-gray-200 hover:bg-gray-50 active:scale-95 transition-all group"
           >
               <ArrowLeft className="w-6 h-6 text-gray-600 mb-1 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-xs font-medium text-gray-500">上一个</span>
+              <span className="text-xs font-bold text-gray-500">上一个</span>
           </button>
           
           <button 
             onClick={toggleFlip}
-            className="flex flex-col items-center justify-center py-4 bg-blue-600 rounded-xl shadow-lg hover:bg-blue-700 transition-colors text-white"
+            className="flex flex-col items-center justify-center py-4 bg-blue-600 rounded-2xl shadow-lg hover:bg-blue-700 active:scale-95 transition-all text-white"
           >
               <RotateCw className={`w-6 h-6 mb-1 transition-transform duration-500 ${isFlipped ? 'rotate-180' : ''}`} />
-              <span className="text-xs font-medium opacity-90">点击翻转</span>
+              <span className="text-xs font-bold opacity-90">{isFlipped ? "返回问题" : "查看考点"}</span>
           </button>
 
           <button 
-            onClick={(e) => { e.stopPropagation(); handleNext(); }}
-            className="flex flex-col items-center justify-center py-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors group"
+            onClick={handleNext}
+            className="flex flex-col items-center justify-center py-4 bg-white rounded-2xl shadow-sm border border-gray-200 hover:bg-gray-50 active:scale-95 transition-all group"
           >
               <ArrowRight className="w-6 h-6 text-gray-600 mb-1 group-hover:translate-x-1 transition-transform" />
-              <span className="text-xs font-medium text-gray-500">下一个</span>
+              <span className="text-xs font-bold text-gray-500">下一个</span>
           </button>
       </div>
+
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+        }
+      `}</style>
     </div>
   );
 };
