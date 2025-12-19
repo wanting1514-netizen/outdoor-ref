@@ -39,7 +39,8 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
     }, 150);
   };
 
-  const toggleFlip = () => {
+  const toggleFlip = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsFlipped(!isFlipped);
   };
 
@@ -104,14 +105,13 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
       </div>
 
       {/* Flashcard Area */}
-      <div className="flex-1 perspective-1000 mb-8 relative group" style={{ perspective: '1000px' }}>
+      <div className="flex-1 perspective-1000 mb-8 relative" style={{ minHeight: '400px' }}>
         <div 
-            className={`relative w-full h-full min-h-[400px] transition-all duration-500 transform-style-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''}`}
+            className={`relative w-full h-full transition-all duration-500 transform-style-3d cursor-pointer ${isFlipped ? 'rotate-y-180' : ''}`}
             onClick={toggleFlip}
-            style={{ transformStyle: 'preserve-3d' }}
         >
             {/* Front */}
-            <div className="absolute inset-0 backface-hidden bg-white rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center justify-center p-8 text-center hover:shadow-2xl transition-shadow" style={{ backfaceVisibility: 'hidden' }}>
+            <div className="absolute inset-0 backface-hidden bg-white rounded-3xl shadow-xl border border-gray-100 flex flex-col items-center justify-center p-8 text-center hover:shadow-2xl transition-shadow">
                 <div className="bg-blue-50 p-4 rounded-full mb-6">
                     <BookOpen className="w-8 h-8 text-blue-600" />
                 </div>
@@ -119,19 +119,18 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
                     {activeCard.title}
                 </h3>
                 <p className="mt-8 text-gray-400 text-sm font-medium animate-pulse">
-                    点击卡片查看详情
+                    点击卡片查看详细内容
                 </p>
             </div>
 
             {/* Back */}
             <div 
                 className="absolute inset-0 backface-hidden bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-xl flex flex-col items-center justify-center p-8 text-center rotate-y-180 overflow-y-auto"
-                style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
             >
                 <div className="w-full text-left">
                      <div className="flex items-center justify-center mb-6">
                         <span className="text-gray-400 text-xs uppercase tracking-widest border border-gray-600 px-3 py-1 rounded-full">
-                            详细内容
+                            详细考点
                         </span>
                      </div>
                      <div className="text-white text-lg md:text-xl leading-relaxed whitespace-pre-line font-light">
@@ -156,7 +155,7 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
       {/* Controls */}
       <div className="grid grid-cols-3 gap-4">
           <button 
-            onClick={handlePrev}
+            onClick={(e) => { e.stopPropagation(); handlePrev(); }}
             className="flex flex-col items-center justify-center py-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors group"
           >
               <ArrowLeft className="w-6 h-6 text-gray-600 mb-1 group-hover:-translate-x-1 transition-transform" />
@@ -168,11 +167,11 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
             className="flex flex-col items-center justify-center py-4 bg-blue-600 rounded-xl shadow-lg hover:bg-blue-700 transition-colors text-white"
           >
               <RotateCw className={`w-6 h-6 mb-1 transition-transform duration-500 ${isFlipped ? 'rotate-180' : ''}`} />
-              <span className="text-xs font-medium opacity-90">翻转卡片</span>
+              <span className="text-xs font-medium opacity-90">点击翻转</span>
           </button>
 
           <button 
-            onClick={handleNext}
+            onClick={(e) => { e.stopPropagation(); handleNext(); }}
             className="flex flex-col items-center justify-center py-4 bg-white rounded-xl shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors group"
           >
               <ArrowRight className="w-6 h-6 text-gray-600 mb-1 group-hover:translate-x-1 transition-transform" />
