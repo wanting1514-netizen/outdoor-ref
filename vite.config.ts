@@ -23,4 +23,3 @@ import path from 'path';
         }
       };
   });
-
