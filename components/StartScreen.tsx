@@ -1,14 +1,15 @@
 
 import React from 'react';
-import { Play, BookOpen, AlertTriangle, ShieldCheck, ArrowRight, Flag, Users, ClipboardList } from 'lucide-react';
+import { Play, BookOpen, AlertTriangle, ShieldCheck, ArrowRight, Flag, Users, ClipboardList, ArrowLeft } from 'lucide-react';
 import { Category } from '../types';
 
 interface StartScreenProps {
   onStart: (category?: Category) => void;
+  onBack: () => void;
   totalQuestions: number;
 }
 
-const StartScreen: React.FC<StartScreenProps> = ({ onStart, totalQuestions }) => {
+const StartScreen: React.FC<StartScreenProps> = ({ onStart, onBack, totalQuestions }) => {
   const categories: { id: Category; title: string; desc: string; icon: React.ReactNode; color: string }[] = [
     {
       id: 'safety_concept',
@@ -56,12 +57,22 @@ const StartScreen: React.FC<StartScreenProps> = ({ onStart, totalQuestions }) =>
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 text-center space-y-8 animate-fade-in pb-10">
+      
+      <div className="w-full flex justify-start max-w-6xl mt-4">
+        <button 
+            onClick={onBack}
+            className="flex items-center text-gray-500 hover:text-gray-900 transition-colors font-medium"
+        >
+            <ArrowLeft className="w-5 h-5 mr-2" /> 返回模式选择
+        </button>
+      </div>
+
       <div className="space-y-4 max-w-2xl">
-        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight mt-8">
-          山地户外赛事裁判题库
+        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+          考试模拟练习
         </h1>
         <p className="text-lg text-gray-600">
-          基于裁判培训教材编写，覆盖安全观、规则、风险管理全流程。
+          请选择专项练习模块，或进行全卷综合模拟。
           <br/>共收录 <strong>{totalQuestions}</strong> 道考点题目。
         </p>
       </div>

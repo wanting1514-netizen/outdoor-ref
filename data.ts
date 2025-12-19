@@ -1,7 +1,11 @@
 
-import { Question, QuestionType } from './types';
+import { Question, QuestionType, Flashcard } from './types';
 
+// ==========================================
+// 考试题库 (Quiz Data)
+// ==========================================
 export const quizData: Question[] = [
+  // ... (保持原有的 quizData 内容不变，为节省篇幅，此处省略原有代码，请保留原有的 quizData 数组内容) ...
   // ==========================================
   // 1. 户外安全观 (p24-25)
   // ==========================================
@@ -122,10 +126,6 @@ export const quizData: Question[] = [
     explanation: "原文 p25：个人安全意识的获得，需要理论的学习和实践的积累。这涉及到户外安全意识。要将知情意聚焦到安全上，才能保证户外的安全。",
     pageReference: "p25"
   },
-
-  // ==========================================
-  // 2. 裁判工作概论 (p26-27, p3)
-  // ==========================================
   {
     id: 201,
     category: 'referee_basics',
@@ -244,10 +244,6 @@ export const quizData: Question[] = [
     explanation: "原文 p26 主要内容（户外赛）12点：\n1技术会方法、2装备检查方法、3发令方法、4路标设置方法、5计时方法、6站位方法、7巡视方法、8电子辅助裁判方法、9警告方法、10判罚方法、11项目交换方法、12各单项特裁判方法。",
     pageReference: "p26"
   },
-
-  // ==========================================
-  // 3. 组织与管理 (p5, p30-31, p101-104)
-  // ==========================================
   {
     id: 301,
     category: 'org_management',
@@ -366,10 +362,6 @@ export const quizData: Question[] = [
     explanation: "原文 p3：(7) 除上述规定外，赛事纠纷处理委员会不得干涉任何比赛事务。",
     pageReference: "p3"
   },
-
-  // ==========================================
-  // 4. 风险管理 (p32-34, p5)
-  // ==========================================
   {
     id: 401,
     category: 'risk_management',
@@ -506,10 +498,6 @@ export const quizData: Question[] = [
     explanation: "原文 p5 对赛事中突发险情的应急措施：\n（一）迅速摸清情况，排除隐患\n（二）熟悉医疗安保方案，就近处理和救护\n（三）紧急报告上级，以备启动应急预案",
     pageReference: "p5"
   },
-
-  // ==========================================
-  // 5. 竞赛规则与执裁 (p36, p98, p101)
-  // ==========================================
   {
     id: 501,
     category: 'rules_officiating',
@@ -695,10 +683,6 @@ export const quizData: Question[] = [
     explanation: "原文 p102 ★（二）交替裁判员站位及执裁重点：\n1、前位，即交替站入口处;\n2、中位，即交替站内;\n3、后位，即交替站出口处",
     pageReference: "p102"
   },
-
-  // ==========================================
-  // 6. 起终点与运动员 (p9-11)
-  // ==========================================
   {
     id: 601,
     category: 'start_finish_athlete',
@@ -815,6 +799,324 @@ export const quizData: Question[] = [
     question: "终点收尾工作中，赛道裁判长收容返回后，需与 ______ 一起核对运动员人数。",
     correctAnswer: "起终点裁判",
     explanation: "原文 p10 （六）终点收尾工作：记录运动员返回情况：待赛道裁判长收容返回后一起核对运动员人数（通常与终点/起终点裁判核对）。",
+    pageReference: "p10"
+  }
+];
+
+// ==========================================
+// 背诵模式数据 (Flashcard Data)
+// ==========================================
+export const flashcardData: Flashcard[] = [
+  // 1. 户外安全观
+  {
+    id: 1001,
+    category: 'safety_concept',
+    title: "安全的概念",
+    content: "指没有危险，没有损失的状态、过程、结果，主体与环境相容相适、则为安全。\n正所谓“无危为安，无损为全”。",
+    pageReference: "p24"
+  },
+  {
+    id: 1002,
+    category: 'safety_concept',
+    title: "正确的户外安全观 (4点)",
+    content: "1）树立正确的自然观，要对大自然有“敬畏之心”。\n2）树立 “规矩意识”，正确处理“自由与服从”的关系。\n3）提倡 “探险”而不“冒险”，正确处理“探索与安全”的关系。\n4）树立责任意识，正确处理“快乐与责任”的关系。",
+    pageReference: "p24"
+  },
+  {
+    id: 1003,
+    category: 'safety_concept',
+    title: "意识的内涵 (知、情、意)",
+    content: "意识是赋予现实的心理现象的总体，表现为三者的统一：\n\n• 知：知识/认知\n• 情：情感（对客观事物的感受和评价）\n• 意：意志（自我克制、毅力、信心、顽强不屈）",
+    pageReference: "p24-25"
+  },
+  {
+    id: 1004,
+    category: 'safety_concept',
+    title: "意识的三大特点",
+    content: "1. 自觉性（如饥饿）\n2. 目的性（如集中注意力）\n3. 能动性（如产生兴趣）",
+    pageReference: "p25"
+  },
+  {
+    id: 1005,
+    category: 'safety_concept',
+    title: "全面落实户外安全观 (4方面)",
+    content: "(1) 户外安全工作的最终结果，就是没有安全问题的发生。\n(2) 从状态、过程、结果三方面把握户外安全。\n(3) 个人安全意识的获得，需要理论的学习和实践的积累。\n(4) 户外安全，需要带有强制性。",
+    pageReference: "p25"
+  },
+
+  // 2. 裁判工作概论
+  {
+    id: 2001,
+    category: 'referee_basics',
+    title: "裁判员的角色定位",
+    content: "裁判员既是竞赛中的“执法人员”，又是竞赛的组织者和领导者。",
+    pageReference: "p26"
+  },
+  {
+    id: 2002,
+    category: 'referee_basics',
+    title: "裁判员的基本要求",
+    content: "（1）坚持原则\n（2）精通业务\n（3）严格的组织纪律\n（4）具备一定的体能、技能，能满足裁判工作需要。",
+    pageReference: "p26"
+  },
+  {
+    id: 2003,
+    category: 'referee_basics',
+    title: "裁判员基本任务",
+    content: "（1）维持竞赛秩序\n（2）维持竞赛正义",
+    pageReference: "p26"
+  },
+  {
+    id: 2004,
+    category: 'referee_basics',
+    title: "竞赛规程基本原则",
+    content: "（1）可行性原则\n（2）公平性原则\n（3）稳定性原则",
+    pageReference: "p26"
+  },
+  {
+    id: 2005,
+    category: 'referee_basics',
+    title: "户外裁判员工作的特殊性 (6点)",
+    content: "（1）裁判工作\n（2）保护工作\n（3）后勤工作\n（4）协调工作\n（5）救援工作\n（6）其他工作（比如协助记者等）",
+    pageReference: "p27"
+  },
+  {
+    id: 2006,
+    category: 'referee_basics',
+    title: "赛事评价体系 (六字方针)",
+    content: "安全、顺畅、精彩\n\n• “安全”分值估计：60-70 分。\n• “顺畅”分值估计：71—85 分。\n• “精彩”分值估计：86—95 分。",
+    pageReference: "p3"
+  },
+  {
+    id: 2007,
+    category: 'referee_basics',
+    title: "安全监督",
+    content: "这是山地户外运动特殊的一个裁判工作，一般由同行中经验丰富、具备一定技术级别的人员担任。",
+    pageReference: "p27"
+  },
+  {
+    id: 2008,
+    category: 'referee_basics',
+    title: "裁判法(户外赛)主要内容",
+    content: "1 技术会方法、2 装备检查方法、3 发令方法、4 路标设置方法、5 计时方法、6 站位方法、7 巡视方法、8 电子辅助裁判方法、9 警告方法、10 判罚方法、11 项目交换方法、12 各单项特裁判方法。",
+    pageReference: "p26"
+  },
+
+  // 3. 组织与管理
+  {
+    id: 3001,
+    category: 'org_management',
+    title: "赛事手册分类 (4类)",
+    content: "1. 会务手册\n2. 秩序册\n3. 裁判手册\n4. 运动员手册",
+    pageReference: "p5"
+  },
+  {
+    id: 3002,
+    category: 'org_management',
+    title: "定线的基本原则 (6点)",
+    content: "1）满足竞赛项目的需要\n2）便于裁判工作\n3）对于突发事件及伤害事故能够及时处理和营救\n4）便于后勤支持\n5）便于观看和记者报道\n6）不影响环保",
+    pageReference: "p30-31"
+  },
+  {
+    id: 3003,
+    category: 'org_management',
+    title: "关门点时间计算",
+    content: "最快运动员速度 x 2",
+    pageReference: "p31"
+  },
+  {
+    id: 3004,
+    category: 'org_management',
+    title: "后勤裁判的“三个保障”",
+    content: "1. 服务保障\n2. 竞技（赛）保障\n3. 安全保障",
+    pageReference: "p11"
+  },
+  {
+    id: 3005,
+    category: 'org_management',
+    title: "后勤裁判内容分类",
+    content: "• 基础保障：衣食住行\n• 保障后勤：通讯、救援、气象、安保",
+    pageReference: "p104"
+  },
+  {
+    id: 3006,
+    category: 'org_management',
+    title: "赛事纠纷处理委员会原则",
+    content: "• 意见不统一时按照简单多数的原则投票表决。\n• 负责对抗诉做出裁决，对规则中未明确问题做决定。\n• 除规定外，不得干涉任何比赛事务。",
+    pageReference: "p3"
+  },
+  {
+    id: 3007,
+    category: 'org_management',
+    title: "赛后工作流程",
+    content: "• 垃圾清理：清理各站点垃圾，回收路标\n• 费用结算：结算费用，分发奖金劳务\n• 赛后总结：统计数据，问卷调查\n• 装备回收整理：归还器材，记录损耗，失物招领",
+    pageReference: "p104"
+  },
+
+  // 4. 风险管理
+  {
+    id: 4001,
+    category: 'risk_management',
+    title: "风险的概念",
+    content: "风险就是指某种不幸事件发生的可能性与其产生的后果的组合。\n它由风险因素、风险事故和风险损失等要素组成。",
+    pageReference: "p32"
+  },
+  {
+    id: 4002,
+    category: 'risk_management',
+    title: "对风险的认知 (3点)",
+    content: "（一）风险是客观存在的\n（二）风险存在未知性和不确定性\n（三）风险有可控和不可控两种",
+    pageReference: "p32"
+  },
+  {
+    id: 4003,
+    category: 'risk_management',
+    title: "风险与安全的关系",
+    content: "风险与安全是对立统一关系。",
+    pageReference: "p32"
+  },
+  {
+    id: 4004,
+    category: 'risk_management',
+    title: "全面把控赛事风险的手段 (6个)",
+    content: "1、审核参赛队伍（员）的参赛资格。\n2、体检报告（高危 18-63，非高危 18-65）。\n3、风险告知书。\n4、装备检查。\n5、技术操作培训。\n6、运动员技术会。",
+    pageReference: "p33-34"
+  },
+  {
+    id: 4005,
+    category: 'risk_management',
+    title: "“两两”检查制度 (必背)",
+    content: "• “一两”：检查运动员穿戴安全设备情况，检查运动员安全装备与绳索之间的连接情况。\n• “二两”：每个环节必须有两个裁判独立检查。\n\n(注：主操作台保护点设置不得少于2处)",
+    pageReference: "p5"
+  },
+  {
+    id: 4006,
+    category: 'risk_management',
+    title: "山地越野赛高危指标",
+    content: "符合以下任意一项：\n1. 有海拔 3500 米以上的路线\n2. 有夜间赛程安排\n3. 距离超过 42.195 千米",
+    pageReference: "p36"
+  },
+  {
+    id: 4007,
+    category: 'risk_management',
+    title: "赛中安全隐患应对 (8个)",
+    content: "1、交通管制\n2、工作人员警示\n3、防止动物伤害\n4、医疗救援安保方案\n5、危险路段的技术处理\n6、绳索技能的设置\n7、队员的装备检查\n8、紧急预案",
+    pageReference: "p34"
+  },
+  {
+    id: 4008,
+    category: 'risk_management',
+    title: "突发险情应急措施 (3步)",
+    content: "（一）迅速摸清情况，排除隐患\n（二）熟悉医疗安保方案，就近处理和救护\n（三）紧急报告上级，以备启动应急预案",
+    pageReference: "p5"
+  },
+
+  // 5. 竞赛规则与执裁
+  {
+    id: 5001,
+    category: 'rules_officiating',
+    title: "制定竞赛规则的基本原则",
+    content: "• 权威性\n• 可操作性\n• 稳定性",
+    pageReference: "p36"
+  },
+  {
+    id: 5002,
+    category: 'rules_officiating',
+    title: "探险越野赛四大基本要素",
+    content: "1. 长距离大耐力\n2. 模拟探险\n3. 无机械动力\n4. 定向（导航）技术",
+    pageReference: "p98"
+  },
+  {
+    id: 5003,
+    category: 'rules_officiating',
+    title: "山地车项目规则重点",
+    content: "• 头盔：必须穿戴，否则不许参赛\n• 推行：不遵守推行规定，罚时 10 分钟\n• 间距：团队赛队员间距不得超过 100 米",
+    pageReference: "p98"
+  },
+  {
+    id: 5004,
+    category: 'rules_officiating',
+    title: "绳索技能项目规则",
+    content: "• 必须穿戴好装备，裁判允许后进入。\n• 完成后必须尽快离开。\n• 采用“双保护”措施（主保护+副保护）。",
+    pageReference: "p98"
+  },
+  {
+    id: 5005,
+    category: 'rules_officiating',
+    title: "医疗判罚",
+    content: "• 医生的决定是最终决定。\n• 静脉注射一次 ≤ 100ml，罚时 10 分钟。",
+    pageReference: "p100"
+  },
+  {
+    id: 5006,
+    category: 'rules_officiating',
+    title: "交替站 (TA站) 设置原则",
+    content: "1. 公平性\n2. 封闭性\n3. 顺畅性",
+    pageReference: "p101"
+  },
+  {
+    id: 5007,
+    category: 'rules_officiating',
+    title: "线路裁判执法原则",
+    content: "1、充分领会定线员及总裁判长的意图。\n2、不得擅自改变或修正布置的工作。\n3、认真做好赛前准备，及时报告。\n4、保证赛事安全、顺畅、精彩。",
+    pageReference: "p98"
+  },
+  {
+    id: 5008,
+    category: 'rules_officiating',
+    title: "交替站 (TA站) 裁判站位",
+    content: "1、前位（入口处）\n2、中位（站内）\n3、后位（出口处）",
+    pageReference: "p102"
+  },
+  {
+    id: 5009,
+    category: 'rules_officiating',
+    title: "TA1 站布置时限",
+    content: "必须在起点发枪前 1 小时完成布置。",
+    pageReference: "p102"
+  },
+
+  // 6. 起终点与运动员
+  {
+    id: 6001,
+    category: 'start_finish_athlete',
+    title: "起终点功能区 (14个)",
+    content: "主席台、运动员站位区、休息区、群众观赛区、贵宾区、媒体区、出发区、检录区、补给区、洗手间、更衣寄存、医疗区、成绩统计区、其他。",
+    pageReference: "p9"
+  },
+  {
+    id: 6002,
+    category: 'start_finish_athlete',
+    title: "检录流程",
+    content: "1. 核对身份及组别\n2. 检查号码布/衣\n3. 检查芯片对应\n4. 检查装备器械",
+    pageReference: "p10"
+  },
+  {
+    id: 6003,
+    category: 'start_finish_athlete',
+    title: "成绩公布时限",
+    content: "成绩在公示处公示 15 分钟无异议后，方可进行颁奖仪式。",
+    pageReference: "p10"
+  },
+  {
+    id: 6004,
+    category: 'start_finish_athlete',
+    title: "运动员服务特点",
+    content: "1. 量化指标明确\n2. 服务对象真实\n3. 竞争压力巨大\n4. 媒体关注度高",
+    pageReference: "p10"
+  },
+  {
+    id: 6005,
+    category: 'start_finish_athlete',
+    title: "运动员信息管理原则",
+    content: "1. 合法性原则\n2. 安全性原则\n3. 准确性原则\n4. 保密性原则",
+    pageReference: "p11"
+  },
+  {
+    id: 6006,
+    category: 'start_finish_athlete',
+    title: "终点收尾工作",
+    content: "待赛道裁判长收容返回后，与起终点裁判一起核对运动员人数，向总裁判长汇报。",
     pageReference: "p10"
   }
 ];

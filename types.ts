@@ -34,3 +34,11 @@ export interface QuizState {
   isStarted: boolean;
   activeQuestions: Question[];
 }
+
+export interface Flashcard {
+  id: number;
+  title: string; // 正面：知识点标题
+  content: string; // 背面：详细内容
+  category: Category;
+  pageReference?: string;
+}
