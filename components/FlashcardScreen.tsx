@@ -139,10 +139,13 @@ const FlashcardScreen: React.FC<FlashcardScreenProps> = ({ cards, onBack }) => {
                      </div>
                      
                      {activeCard.pageReference && (
-                        <div className="mt-8 pt-4 border-t border-gray-700 text-center">
-                            <span className="text-gray-500 text-sm">
-                                来源: {activeCard.pageReference}
-                            </span>
+                        <div className="mt-8 pt-6 border-t border-gray-700 flex justify-center">
+                            <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10">
+                                <BookOpen className="w-4 h-4 text-blue-300" />
+                                <span className="text-gray-200 text-sm font-medium">
+                                    文档页码: {activeCard.pageReference}
+                                </span>
+                            </div>
                         </div>
                      )}
                 </div>

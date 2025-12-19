@@ -5,7 +5,6 @@ import { Question, QuestionType, Flashcard } from './types';
 // 考试题库 (Quiz Data)
 // ==========================================
 export const quizData: Question[] = [
-  // ... (保持原有的 quizData 内容不变，为节省篇幅，此处省略原有代码，请保留原有的 quizData 数组内容) ...
   // ==========================================
   // 1. 户外安全观 (p24-25)
   // ==========================================
@@ -126,6 +125,10 @@ export const quizData: Question[] = [
     explanation: "原文 p25：个人安全意识的获得，需要理论的学习和实践的积累。这涉及到户外安全意识。要将知情意聚焦到安全上，才能保证户外的安全。",
     pageReference: "p25"
   },
+
+  // ==========================================
+  // 2. 裁判工作概论 (p26-27, p3)
+  // ==========================================
   {
     id: 201,
     category: 'referee_basics',
@@ -245,6 +248,30 @@ export const quizData: Question[] = [
     pageReference: "p26"
   },
   {
+    id: 213,
+    category: 'referee_basics',
+    type: QuestionType.SINGLE_CHOICE,
+    question: "根据《中国登山协会山地户外裁判员管理办法》，溯溪、溪降属于哪一类户外运动？",
+    options: ["高原户外运动", "峡谷系列", "岩壁系列", "荒漠户外运动"],
+    correctAnswer: "峡谷系列",
+    explanation: "原文 p12 表格：山地户外运动 -> 峡谷系列 -> 溯溪、溪降、搭索过洞、皮划艇等。",
+    pageReference: "p12"
+  },
+  {
+    id: 214,
+    category: 'referee_basics',
+    type: QuestionType.SINGLE_CHOICE,
+    question: "根据《中国登山协会山地户外裁判员管理办法》，垂向户外运动（如攀楼）属于哪一大项？",
+    options: ["山地户外运动", "海岛户外运动", "人工建筑物户外运动", "荒漠户外运动"],
+    correctAnswer: "人工建筑物户外运动",
+    explanation: "原文 p12 表格：人工建筑物户外运动 -> 垂向户外运动（攀楼、攀塔、楼降）。",
+    pageReference: "p12"
+  },
+
+  // ==========================================
+  // 3. 组织与管理 (p5, p30-31, p101-104)
+  // ==========================================
+  {
     id: 301,
     category: 'org_management',
     type: QuestionType.MULTI_CHOICE,
@@ -362,6 +389,10 @@ export const quizData: Question[] = [
     explanation: "原文 p3：(7) 除上述规定外，赛事纠纷处理委员会不得干涉任何比赛事务。",
     pageReference: "p3"
   },
+
+  // ==========================================
+  // 4. 风险管理 (p32-34, p5)
+  // ==========================================
   {
     id: 401,
     category: 'risk_management',
@@ -498,6 +529,10 @@ export const quizData: Question[] = [
     explanation: "原文 p5 对赛事中突发险情的应急措施：\n（一）迅速摸清情况，排除隐患\n（二）熟悉医疗安保方案，就近处理和救护\n（三）紧急报告上级，以备启动应急预案",
     pageReference: "p5"
   },
+
+  // ==========================================
+  // 5. 竞赛规则与执裁 (p36, p98, p101, p13)
+  // ==========================================
   {
     id: 501,
     category: 'rules_officiating',
@@ -684,6 +719,39 @@ export const quizData: Question[] = [
     pageReference: "p102"
   },
   {
+    id: 520,
+    category: 'rules_officiating',
+    type: QuestionType.SINGLE_CHOICE,
+    question: "根据线路等级，S级（短距离）线路的距离要求是：",
+    options: ["25千米以内", "25-42.195千米", "42.195-100千米", "100千米以上"],
+    correctAnswer: "25千米以内",
+    explanation: "原文 p13：S级（短距离）：线路距离 25 千米以内。",
+    pageReference: "p13"
+  },
+  {
+    id: 521,
+    category: 'rules_officiating',
+    type: QuestionType.SINGLE_CHOICE,
+    question: "根据线路等级，L级（长距离）线路涉及的海拔可以是：",
+    options: ["仅限 3500 米以下", "3500 米以上", "无限制", "5000 米以上"],
+    correctAnswer: "3500 米以上",
+    explanation: "原文 p13：L级（长距离）... L1级 3500 米以上。 (注：表格中M和L级都有涉及3500米以上的分级)",
+    pageReference: "p13"
+  },
+  {
+    id: 522,
+    category: 'rules_officiating',
+    type: QuestionType.FILL_IN_BLANK,
+    question: "XL级（超长距离）的线路距离要求是 ______ 千米以上。",
+    correctAnswer: "100",
+    explanation: "原文 p13：XL 级（超长距离）：100 千米以上。",
+    pageReference: "p13"
+  },
+
+  // ==========================================
+  // 6. 起终点与运动员 (p9-11)
+  // ==========================================
+  {
     id: 601,
     category: 'start_finish_athlete',
     type: QuestionType.SINGLE_CHOICE,
@@ -800,6 +868,16 @@ export const quizData: Question[] = [
     correctAnswer: "起终点裁判",
     explanation: "原文 p10 （六）终点收尾工作：记录运动员返回情况：待赛道裁判长收容返回后一起核对运动员人数（通常与终点/起终点裁判核对）。",
     pageReference: "p10"
+  },
+  {
+    id: 613,
+    category: 'start_finish_athlete',
+    type: QuestionType.MULTI_CHOICE,
+    question: "起跑发令的正确准备流程是？",
+    options: ["核实发令领导人数", "检查发令枪/汽笛是否完好", "起跑线处拉好冲刺带", "请发令领导就位"],
+    correctAnswer: ["核实发令领导人数", "检查发令枪/汽笛是否完好", "起跑线处拉好冲刺带", "请发令领导就位"],
+    explanation: "原文 p10 （三）发令的准备工作：核实发令领导人数—检查发令枪或汽笛是否完好—准备发令台—-起跑线处拉好冲刺带-—请发令领导就位做好发令准备—-倒计时告知运动员。",
+    pageReference: "p10"
   }
 ];
 
@@ -900,6 +978,13 @@ export const flashcardData: Flashcard[] = [
     title: "裁判法(户外赛)主要内容",
     content: "1 技术会方法、2 装备检查方法、3 发令方法、4 路标设置方法、5 计时方法、6 站位方法、7 巡视方法、8 电子辅助裁判方法、9 警告方法、10 判罚方法、11 项目交换方法、12 各单项特裁判方法。",
     pageReference: "p26"
+  },
+  {
+    id: 2009,
+    category: 'referee_basics',
+    title: "户外运动项目分类 (山地/人工)",
+    content: "• 山地户外运动: \n   - 丛林系列 (徒步、穿越、CS)\n   - 峡谷系列 (溯溪、溪降、皮划艇)\n   - 岩壁系列 (攀岩、岩降)\n• 人工建筑物户外: \n   - 垂向 (攀楼、楼降)\n   - 水平 (汽车、公路轮滑)",
+    pageReference: "p12"
   },
 
   // 3. 组织与管理
@@ -1010,6 +1095,13 @@ export const flashcardData: Flashcard[] = [
     content: "（一）迅速摸清情况，排除隐患\n（二）熟悉医疗安保方案，就近处理和救护\n（三）紧急报告上级，以备启动应急预案",
     pageReference: "p5"
   },
+  {
+    id: 4009,
+    category: 'risk_management',
+    title: "山地多项赛 & 拓展赛高危指标",
+    content: "• 山地多项赛高危：\n  1) 使用绳索装备 \n  2) 海拔 > 3500m \n  3) 夜间赛程 \n  4) 距离 > 42.195km\n• 户外拓展赛高危：\n  1) 使用专业技术装备 \n  2) 设置距离地面 2 米以上的项目",
+    pageReference: "p36-37"
+  },
 
   // 5. 竞赛规则与执裁
   {
@@ -1075,6 +1167,27 @@ export const flashcardData: Flashcard[] = [
     content: "必须在起点发枪前 1 小时完成布置。",
     pageReference: "p102"
   },
+  {
+    id: 5010,
+    category: 'rules_officiating',
+    title: "线路等级划分 (S/M/L/XL)",
+    content: "• S级 (短): < 25km (海拔<3500)\n• M级 (中): 25 - 42.195km\n• L级 (长): 42.195 - 100km\n• XL级 (超长): > 100km",
+    pageReference: "p13"
+  },
+  {
+    id: 5011,
+    category: 'rules_officiating',
+    title: "TA站、CP站、SP站区别",
+    content: "• 交替站 (TA): 项目转换点，承前启后 (3点合一)。\n• 检查点 (CP): 仅仅打卡检查，不一定有补给。\n• 补给点 (SP): 仅提供补给。",
+    pageReference: "p101"
+  },
+  {
+    id: 5012,
+    category: 'rules_officiating',
+    title: "竞赛规则的三大功能",
+    content: "1. 制约功能\n2. 协调功能\n3. 促进功能",
+    pageReference: "p36"
+  },
 
   // 6. 起终点与运动员
   {
@@ -1117,6 +1230,13 @@ export const flashcardData: Flashcard[] = [
     category: 'start_finish_athlete',
     title: "终点收尾工作",
     content: "待赛道裁判长收容返回后，与起终点裁判一起核对运动员人数，向总裁判长汇报。",
+    pageReference: "p10"
+  },
+  {
+    id: 6007,
+    category: 'start_finish_athlete',
+    title: "发令准备流程",
+    content: "1. 核实发令领导人数\n2. 检查发令枪/汽笛\n3. 准备发令台\n4. 拉好冲刺带\n5. 领导就位\n6. 倒计时告知",
     pageReference: "p10"
   }
 ];
